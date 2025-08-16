@@ -1,5 +1,6 @@
 streamlit
 pandas
+Polars
 numpy
 scipy
 matplotlib
