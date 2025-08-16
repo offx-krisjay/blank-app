@@ -57,7 +57,7 @@ if up_file is not None:
         else:
             st.write("## 1. Column-wise Visualizations")
             for col in df.columns:
-                st.subheader(f"📌 {col}")
+                st.subheader(f"{col}")
                 fig, ax = plt.subplots()
 
                 if df[col].dtype in ["int64", "float64"]:
