@@ -3,4 +3,4 @@ polars
 pandas
 numpy
 scikit-learn
-
+sweetviz
