@@ -7,8 +7,8 @@ from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 from sklearn.preprocessing import MinMaxScaler,LabelEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.metrics import mean_squared_error, r2_score, accuracy_score, classification_report
-
-
+import streamlit.components.v1 as component
+import sweetviz as sv
 
 st.title("Data-Cleansing, Profiling & ML Tool")
 st.subheader("By Muralikrishna")
@@ -49,6 +49,19 @@ if up_file is not None:
         st.warning("DataFrame is empty after cleaning.")
     else:
         st.dataframe(df.head(100))
+
+     st.subheader("Profiling Report")
+
+    if st.checkbox("Generate profiling report"):
+        if df.empty or df.shape[1] == 0:
+            st.warning("DataFrame is empty. Cannot generate profiling report.")
+        else:
+            prof_rep = sv.analyze(df)
+            report.show_html("report.html")
+            with open("report.html", "r", encoding="utf-8") as f:
+                st.components.v1.html(f.read(), height=800, scrolling=True)
+
+    
         
     st.subheader("Encoding")
 
