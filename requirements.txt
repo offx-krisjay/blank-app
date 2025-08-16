@@ -1,6 +1,7 @@
-streamlit
-polars
-pandas
-numpy
-scikit-learn
-sweetviz
+streamlit==1.37.0
+sweetviz==2.3.1
+pandas==2.2.2
+numpy==1.26.4
+scipy==1.13.1
+matplotlib==3.9.0
+scikit-learn==1.4.2
