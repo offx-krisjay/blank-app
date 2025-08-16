@@ -1,1 +1,5 @@
 streamlit
+polars
+pandas
+numpy
+scikit-learn
