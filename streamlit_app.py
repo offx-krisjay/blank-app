@@ -7,8 +7,8 @@ from sklearn.ensemble import RandomForestRegressor, RandomForestClassifier
 from sklearn.preprocessing import MinMaxScaler,LabelEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.metrics import mean_squared_error, r2_score, accuracy_score, classification_report
-import streamlit.components.v1 as component
-import sweetviz as sv
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 st.title("Data-Cleansing, Profiling & ML Tool")
 st.subheader("By Muralikrishna")
@@ -51,18 +51,37 @@ if up_file is not None:
         st.dataframe(df.head(100))
 
     st.subheader("Profiling Report")
-
     if st.checkbox("Generate profiling report"):
         if df.empty or df.shape[1] == 0:
             st.warning("DataFrame is empty. Cannot generate profiling report.")
         else:
-            prof_rep = sv.analyze(df)
-            report.show_html("report.html")
-            with open("report.html", "r", encoding="utf-8") as f:
-                st.components.v1.html(f.read(), height=800, scrolling=True)
+            st.write("## 1. Column-wise Visualizations")
+            for col in df.columns:
+                st.subheader(f"📌 {col}")
+                fig, ax = plt.subplots()
 
-    
-        
+                if df[col].dtype in ["int64", "float64"]:
+                    sns.histplot(df[col].dropna(), bins=30, kde=True, ax=ax)
+                    plt.title(f"Histogram of {col}")
+                else:
+                    df[col].value_counts().plot(kind="bar", ax=ax)
+                    plt.title(f"Bar Chart of {col}")
+
+                st.pyplot(fig)
+
+            st.write("## 2. Correlation Heatmap")
+            corr = df.corr(numeric_only=True)
+            fig, ax = plt.subplots()
+            sns.heatmap(corr, annot=True, cmap="coolwarm", ax=ax)
+            plt.title("Correlation Heatmap")
+            st.pyplot(fig)
+
+        fig, ax = plt.subplots()
+        sns.heatmap(corr, annot=True, cmap="coolwarm", ax=ax)
+        plt.title("Correlation Heatmap")
+        st.pyplot(fig)
+
+ 
     st.subheader("Encoding")
 
     if st.checkbox("Convert all String column to numerical value"):
