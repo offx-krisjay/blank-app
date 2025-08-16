@@ -74,14 +74,18 @@ if up_file is not None:
             fig, ax = plt.subplots()
             sns.heatmap(corr, annot=True, cmap="coolwarm", ax=ax)
             plt.title("Correlation Heatmap")
+            st.pyplot(fig)st.write("## 3. Correlation Matrix Table")
+            st.write(corr)
+
+            st.write("## 4. Missing Values per Column")
+            missing = df.isnull().sum()
+            st.write(missing)
+
+            fig, ax = plt.subplots()
+            missing.plot(kind="bar", ax=ax)
+            plt.title("Missing Values per Column")
             st.pyplot(fig)
 
-        fig, ax = plt.subplots()
-        sns.heatmap(corr, annot=True, cmap="coolwarm", ax=ax)
-        plt.title("Correlation Heatmap")
-        st.pyplot(fig)
-
- 
     st.subheader("Encoding")
 
     if st.checkbox("Convert all String column to numerical value"):
