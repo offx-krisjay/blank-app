@@ -69,15 +69,16 @@ if up_file is not None:
 
                 st.pyplot(fig)
 
-            st.write("## 2. Correlation Heatmap")
+            st.write("##Correlation Heatmap")
             corr = df.corr(numeric_only=True)
             fig, ax = plt.subplots()
             sns.heatmap(corr, annot=True, cmap="coolwarm", ax=ax)
             plt.title("Correlation Heatmap")
-            st.pyplot(fig)st.write("## 3. Correlation Matrix Table")
+            st.pyplot(fig)
+            st.write("##Correlation Matrix Table")
             st.write(corr)
 
-            st.write("## 4. Missing Values per Column")
+            st.write("##Missing Values per Column")
             missing = df.isnull().sum()
             st.write(missing)
 
