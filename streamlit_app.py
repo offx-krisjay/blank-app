@@ -50,7 +50,7 @@ if up_file is not None:
     else:
         st.dataframe(df.head(100))
 
-     st.subheader("Profiling Report")
+    st.subheader("Profiling Report")
 
     if st.checkbox("Generate profiling report"):
         if df.empty or df.shape[1] == 0:
