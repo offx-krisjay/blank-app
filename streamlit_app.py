@@ -44,7 +44,7 @@ if up_file is not None:
         if filt_val:
             df=df[df[filt_col].astype(str).str.contains(filt_val)]
     
-    st.dataframe(us_df)
+    
     st.download_button("Cleaned Data",us_df.to_csv(Index=False),"cleaned_data.csv")
 
     
