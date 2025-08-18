@@ -44,17 +44,15 @@ if up_file is not None:
         if filt_val:
             df=df[df[filt_col].astype(str).str.contains(filt_val)]
             
-    clean_df=df
-    st.sidebar.download_button("Cleaned Data",clean_df.to_csv(index=False),"cleaned_data.csv")
-
-
-    
-        
+ 
     st.subheader("Cleaned Data Preview")
     if df.empty:
         st.warning("DataFrame is empty after cleaning.")
     else:
         st.dataframe(df.head(100))
+
+    clean_df=df
+    st.sidebar.download_button("Cleaned Data",clean_df.to_csv(index=False),"cleaned_data.csv")
 
     st.subheader("Profiling Report")
     if st.checkbox("Generate profiling report"):
