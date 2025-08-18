@@ -45,7 +45,7 @@ if up_file is not None:
             df=df[df[filt_col].astype(str).str.contains(filt_val)]
             
     clean_df=df
-    st.sidebar.download_button("Cleaned Data",clean_df.to_csv(Index=False),"cleaned_data.csv")
+    st.sidebar.download_button("Cleaned Data",clean_df.to_csv(index=False),"cleaned_data.csv")
 
 
     
@@ -152,4 +152,4 @@ if up_file is not None:
                 us_pred=model.predict(us_df[features]) # type: ignore
                 us_df['Predicitions']=us_pred
                 st.dataframe(us_df)
-                st.download_button("download predictions for user file",us_df.to_csv(Index=False),"user_file_predictions.csv")
+                st.download_button("download predictions for user file",us_df.to_csv(index=False),"user_file_predictions.csv")
