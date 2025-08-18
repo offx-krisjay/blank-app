@@ -43,6 +43,11 @@ if up_file is not None:
         filt_val=st.sidebar.text_input("enter filter value")
         if filt_val:
             df=df[df[filt_col].astype(str).str.contains(filt_val)]
+            clean_df=us_df
+            st.dataframe(clean_df)
+                st.download_button("Cleaned Data",clean_df.to_csv(Index=False),"cleaned_data.csv")
+
+    
         
     st.subheader("Cleaned Data Preview")
     if df.empty:
